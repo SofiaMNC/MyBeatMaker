@@ -1,0 +1,230 @@
+@GuideBook(title: "Clavier Musical", icon: title.png, background: titleBackground.png, firstFile: SoundPadView.swift) {
+    @WelcomeMessage(title: "Crée tes propres musiques en codant un clavier musical !") {
+      Dans cet atelier, nous allons explorer la programmation iOS en réalisant une petite app de clavier musical.
+      
+      Prêt.e à composer tes propres musiques ? C'est parti ! 🚀🎵
+    }
+    @Guide {
+        @Step(title: "Créer ton clavier musical 🎛️ ") {
+            @ContentAndMedia {
+                ![](intro.png)
+                                
+                Le clavier musical permet de mélanger différents sons pour créer sa propre musique. 
+                Tu peux ainsi créer ton propre instrument en codant, puis enregistrer et partager tes compositions
+                avec ami.e.s et familles.
+               
+            }
+            @TaskGroup(title: "Découvrir les boutons sonores") {
+                @Task(type: experiment, title: "Ajouter les boutons sonores", id: "soundPadButtons", file: SoundPadView.swift) {
+                    @Page(id: "1.intro", title: "") {
+                      Un clavier musical nécessite des boutons sonores pour lancer et arrêter les sons. Il y en a déjà un, examinons-le ensemble !
+                        
+                      Un bouton sonore est caractérisé par 3 propriétés :
+                        - un son
+                        - une couleur
+                        - une image affichée sur le bouton
+                        
+                        Taper sur un bouton sonore joue le son associé. Taper à nouveau arrête le son.
+                    }
+                    @Page(id: "1.addSoundButton", title: "") {
+                      Ce bouton est sympa, mais il n'y en a qu'un ! Ajoutons-en quelques autres...
+                                                
+                      Ajoute le morceau de code ci-dessous pour créer un nouveau bouton sonore :
+                      
+                      ```
+                      SoundButton(sound: .CosmicBeat, color: .purple, image: Image(systemName: "star"))
+                      ```
+                    }
+                }
+                @Task(type: experiment, title: "Positioner les boutons sonores", id: "soundPadGrid", file: SoundPadView.swift) {
+                    @Page(id: "1.createTheGrid", title: "") {
+                      As-tu remarqué ? Les boutons sont positionnés l'un en-dessous de l'autre. Ce n'est pas idéal.
+                      
+                      💡 Il nous faut une grille !
+                        
+                      Efface les boutons et ajoute le morceau de code ci-dessous pour créer une grille contenant nos deux 
+                      boutons sonores:
+                      
+                      ```
+                      Grid {
+                          //#-learning-code-snippet(1.addFirstGridRow)
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                      }
+                      ```
+                    }
+                    @Page(id: "1.addFirstGridRow", title: "") {
+                      Hmm...le rendu n'a pas beaucoup changé 😕 
+                      
+                      💡 C'est parce que notre grille n'a pas de rangées !
+
+                      Efface les deux boutons, et ajoute le morceau de code ci-dessous pour créer 
+                      une rangée contenant nos boutons sonores :
+                      
+                      ```
+                      GridRow {
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          //#-learning-code-snippet(1.addOneMoreButton)
+                      }
+                      //#-learning-code-snippet(1.addMoreGridRows)
+                      ```
+                      
+                      Génial ! Nos deux boutons sont maintenant alignés sur la même rangée.
+                    }
+                    @Page(id: "1.addOneMoreButton", title: "") {
+                      Nous avons besoin de davantage de boutons dans ce clavier musical, 
+                      et il semble bien que nous en ayons la place.
+                      
+                      Ajoutons un troisième bouton à notre rangée !
+                                            
+                      ```
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                      ```
+    
+                      Super ! 
+                      
+                      As-tu remarqué ? Leur taille s'est automatiquement ajustée pour que les boutons remplissent la largeur de l'écran, tout en tenant côte à côte.
+                    }
+                    @Page(id: "1.addMoreGridRows", title: "") {
+                      Nous avons parlé d'une grille tout à l'heure. Ajoutons d'autres rangées de boutons sonore !
+                      
+                      Tape ou ajoute le morceau de code ci-dessous pour obtenir 2 nouvelles rangées : 
+                        
+                      ```
+                      GridRow {
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                      }
+                      GridRow {
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .SlowBeat, color: .purple, image: Image(systemName: "star"))
+                      }
+                      ```
+                        
+                      Notre clavier musical est prêt ! 🎉 Il y a juste un problème...
+                    }
+                }
+                @Task(type: experiment, title: "Personnaliser les boutons sonores", id: "soundPadCustomization", file: SoundPadView.swift) {
+                    @Page(id: "1.changeSound", title: "", isAddable: false) {
+                      Nos boutons jouent tous le même son ! Pas terrible pour composer un morceau 😓 Arrangeons cela !
+                      
+                      Changer la valeur du paramètre `sound` d'un bouton modifie le son qui est joué.
+                                                
+                      Pour voir les autres sons disponibles, efface  `.SlowBeat` et tape un point (`.`). 
+                      Sélectionne ensuite un nouveau son dans la liste de sons qui apparaît, comme `.CosmisBass`:
+                      
+                      ```
+                      SoundButton(sound: .CosmicBass, color: .purple, image: Image(systemName: "star"))
+                      ```
+                      
+                      Explore les autres sons de la librairie, et sélectionne ceux qui te plaisent le plus !
+                    }
+                    @Page(id: "1.changeColor", title: "", isAddable: false) {
+                      Chaque bouton accepte aussi un paramètre `color`, pour différencier les boutons, mais aussi pour rendre
+                      le clavier musical plus fun!
+                      
+                      Change la couleur d'un bouton en effaçant `.purple`, puis tape `.`. 
+                      
+                      Comme pour les sons, la liste des couleurs disponibles s'affiche. 
+                      
+                      Tu peux maintenant choisir une nouvelle couleur, comme `.mint` par exemple:
+                      
+                      ```
+                      SoundButton(sound: .CosmicBass, color: .mint, image: Image(systemName: "star")
+                      ```
+                      
+                      Personnalise tous tes boutons et donne à ton clavier musical un look unique ! 🎨
+                    }
+                    @Page(id: "1.changeImage", title: "", isAddable: false) {
+                        Pour finir, chaque bouton accepte également un dernier paramètre : une image.
+                        
+                        Pour changer l'image d'un bouton : 
+                        - Efface `Image(systemName: "star")`
+                        - Tape sur le menu images, représenté par une étoile dans un cercle, accessible dans la barre en haut de la fenêtre
+                        - Tape sur l'image qui te plaît pour l'ajouter au bouton
+                        
+                        ```
+                        SoundButton(sound: .CosmicBass, color: .mint, image: Image(systemName: "music.note"))
+                        ```
+                        
+                        Tu trouveras un grand nombre d'icônes parmi lesquelles choisir !
+                    }
+                    @Page(id: "1.beatsStudioSession", title: "") {
+                      Notre clavier musical est superbe ! Il est grand temps d'enregistrer une musique !
+                      
+                      Appuie sur le bouton "`Enregistrer`" et lance-toi. Tu peux ensuite réécouter ton morceau, avant de le partager!
+                      
+                      Ça y est, tu composes de la musique ! 😎
+                    }
+                }
+            }
+            @TaskGroup(title: "Ajouter de nouveaux sons") {
+                @Task(type: experiment, title: "Ajouter les fichiers sonores", id: "newSounds", file: Sound.swift) {
+                    @Page(id: "2.intro", title: "") {
+                      Nous avons quelques sons sympathiques, mais que faire pour en ajouter d'autres ?
+                    }
+                    @Page(id: "2.addSoundFiles", title: "") {
+                        - Dans la barre latérale gauche, tape sur l'icône située en haut à droite 
+                        représentant un fichier avec un petit "+".
+                        
+                        Un menu s'ouvre.
+                        
+                        - Tape sur "Insérer depuis...", puis navigue vers le dossier "Nouveaux Sons".
+                        
+                        - Tape sur chaque fichier que tu souhaites importer dans l'app, 
+                        ou tape sur "Tout sélect." pour tous les sélectionner.
+                        
+                        - Tape ensuite sur "Ouvrir", en haut à droite de la fenêtre d'ajout de fichier.
+                                                
+                        🎉 Voilà ! Les nouveaux fichiers sonores sont maintenant dans l'app !
+                        
+                        Pour plus de clarté, positionons-les sous la section `Sample Sounds` en tirant-glissant.
+                      }
+                    @Page(id: "2.addSound", title: "") {  
+                      Nos boutons sonores ne reconnaissent que les sons de type `Sound`. 
+                      
+                      Pour utiliser nos nouveaux fichiers sonores, nous devons les associer à un `Sound`. 
+                      
+                      Allons-y !
+                      
+                      ```
+                      // New Sounds
+                      case DrumPercussions, 
+                           GlowBeat, 
+                           GlowChords
+                      ```
+                    }
+                    @Page(id: "2.Done!", title: "") {
+                        Parfait ! Nous pouvons maintenant utiliser ces nouveaux sons dans nos boutons !
+                        
+                        Essayons !
+                    }
+                }
+                @Task(type: experiment, title: "Utiliser nos nouveaux sons", id: "soundPadButtons", file: SoundPadView.swift) {
+                    @Page(id: "3.changeSound", title: "", isAddable: false) {
+                      Tu peux soit créer de nouveaux boutons pour tes nouveaux sons, en ajoutant une nouvelle rangée :
+                      
+                      ```
+                      GridRow {
+                          SoundButton(sound: .DrumPercussions, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .GlowBeat, color: .purple, image: Image(systemName: "star"))
+                          SoundButton(sound: .GlowChords, color: .purple, image: Image(systemName: "star"))
+                      }
+                      ```
+                      
+                      ou modifier les boutons existant en leur passant en paramètres les nouveaux sons que tu as créés:
+                        
+                      ```
+                      SoundButton(sound: .GlowBeat, color: .purple, Image(systemName: "star"))
+                      ```
+                      
+                      Tu peux bien sûr toujours modifier les couleurs et les images de tes boutons !
+                    }
+                 }            
+            }
+        }
+    }
+}
